@@ -3856,10 +3856,17 @@ elements, then there are no <a>supported property indices</a>.
 <p>The <dfn attribute for=NodeList>length</dfn> attribute must return the number of nodes
 <a for=collection>represented by the collection</a>.
 
-<p>The <dfn method for=NodeList><code>item(<var>index</var>)</code></dfn> method must return the
-<var>index</var><sup>th</sup> <a for=/>node</a> in the <a>collection</a>. If there is no
-<var>index</var><sup>th</sup> <a for=/>node</a> in the <a>collection</a>, then the method must
-return null.
+<p>The <dfn method for=NodeList><code>item(<var>index</var>)</code></dfn> method steps are:
+
+<ol>
+ <li><p>Let <var>node</var> be the <var>index</var><sup>th</sup> <a for=/>node</a> in the
+ <a>collection</a>, or null if there is no such <a for=/>node</a>.
+
+ <li><p>If <var>node</var> is null, then return null.
+
+ <li><p>Return the result of <a>retargeting</a> <var>node</var> against the <a>collection's</a>
+ root.
+</ol>
 
 
 <h5 id=interface-htmlcollection>Interface {{HTMLCollection}}</h5>
@@ -3906,10 +3913,17 @@ elements, then there are no <a>supported property indices</a>.
 <p>The <dfn attribute for=HTMLCollection><code>length</code></dfn> getter steps are to return the
 number of nodes <a for=collection>represented by the collection</a>.
 
-<p>The <dfn method for=HTMLCollection><code>item(<var>index</var>)</code></dfn> method steps are to
-return the <var>index</var><sup>th</sup> <a for=/>element</a> in the <a>collection</a>. If there
-is no <var>index</var><sup>th</sup> <a for=/>element</a> in the <a>collection</a>, then the method
-must return null.
+<p>The <dfn method for=HTMLCollection><code>item(<var>index</var>)</code></dfn> method steps are:
+
+<ol>
+ <li><p>Let <var>element</var> be the <var>index</var><sup>th</sup> <a for=/>element</a> in the
+ <a>collection</a>, or null if there is no such <a for=/>element</a>.
+
+ <li><p>If <var>element</var> is null, then return null.
+
+ <li><p>Return the result of <a>retargeting</a> <var>element</var> against the <a>collection's</a>
+ root.
+</ol>
 
 <p>The <a>supported property names</a> are the values from the list returned by these steps:
 
@@ -3940,8 +3954,8 @@ must return null.
  <li><p>If <var>key</var> is the empty string, return null.
 
  <li>
-  <p>Return the first <a for=/>element</a> in the <a>collection</a> for which at least one of
-  the following is true:
+  <p>Let <var>element</var> be the first <a for=/>element</a> in the <a>collection</a> for which
+  at least one of the following is true:
 
   <ul>
    <li>it has an <a for=Element>ID</a> which is <var>key</var>;
@@ -3952,6 +3966,11 @@ must return null.
   </ul>
 
   <p>or null if there is no such <a for=/>element</a>.
+
+ <li><p>If <var>element</var> is null, then return null.
+
+ <li><p>Return the result of <a>retargeting</a> <var>element</var> against the <a>collection's</a>
+ root.
 </ol>
 
 
